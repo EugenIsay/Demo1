@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Demo1.RedactWindow"
+        Title="RedactWindow">
+	<Grid ColumnDefinitions="*,*">
+		<DockPanel>
+			<Image DockPanel.Dock="Top" Name="Image"/>
+			<Button DockPanel.Dock="Top" Classes="NB" Content="Добавить картинку"/>
+		</DockPanel>
+		<StackPanel Grid.Column="1">
+			<TextBlock Text="Название"/>
+			<TextBox Classes="NTX" Name="Name" />
+			<TextBlock Text="Стоимость"/>
+			<TextBox Classes="NTX" Name="Cost"/>
+			<TextBlock Text="Длительность в минутах"/>
+			<TextBox Classes="NTX" Name="Time"/>
+			<TextBlock Text="Описание"/>
+			<TextBox Classes="NTX" Name="Desc"/>
+			<TextBlock Text="Скидка"/>
+			<TextBox Classes="NTX" Name="Discount"/>
+			<Button Classes="NB" Content="Готово"/>
+		</StackPanel>
+	</Grid>
+</Window>

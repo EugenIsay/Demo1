@@ -4,12 +4,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Demo1.MainWindow"
+		x:CompileBindings="False"
         Title="Demo1">
-	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-		<TextBlock HorizontalAlignment="Center" Text="АААААА"/>
-		<StackPanel Orientation="Horizontal">
-			<Button Classes="NB" Content="aaaa"/>
-			<TextBox Classes="NTX" Watermark="Для админа"/>
+	<DockPanel Margin="10" LastChildFill="True">
+		<StackPanel DockPanel.Dock="Top" >
+			<TextBox Classes="NTX" Watermark="Поиск"/>
+			<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
+				<TextBlock Name="ShownAmount" HorizontalAlignment="Center" Grid.Column="0"/>
+				<ComboBox SelectedIndex="0" Name="Sort" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="1">
+					<ComboBoxItem>Без сортировки</ComboBoxItem>
+					<ComboBoxItem>По возрастанию стоимости</ComboBoxItem>
+					<ComboBoxItem>По убыванию стоимости</ComboBoxItem>
+				</ComboBox>
+				<ComboBox SelectedIndex="0" Name="Filtr" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="2">
+					<ComboBoxItem>Без фильтрации</ComboBoxItem>
+					<ComboBoxItem>от 0 до 5%</ComboBoxItem>
+					<ComboBoxItem>от 5% до 15%</ComboBoxItem>
+					<ComboBoxItem>от 15% до 30%</ComboBoxItem>
+					<ComboBoxItem>от 30% до 70%</ComboBoxItem>
+					<ComboBoxItem>от 70% до 100%</ComboBoxItem>
+				</ComboBox>
+			</Grid>
 		</StackPanel>
-	</StackPanel>
+		<Button Name="Add" Click="AddButtonClick" DockPanel.Dock="Bottom" Classes="NB" Content="Добавить услугу"/>
+		<ListBox DockPanel.Dock="Bottom" Background="#ffffe1">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="1*, 2*, 1*">
+						<StackPanel>
+							<TextBlock Name="{Binding Name}"/>
+							<TextBlock/>
+							<TextBlock Name="Discount"/>
+							<StackPanel Orientation="Horizontal">
+								<Button/>
+								<Button/>
+							</StackPanel>
+						</StackPanel>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
 </Window>

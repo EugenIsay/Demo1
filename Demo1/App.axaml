@@ -15,5 +15,9 @@
 			<Setter Property="Background" Value="#ffffe1"/>
 			<Setter Property="Margin" Value="5"/>
 		</Style>
+		<Style Selector=" ComboBox.NCB">
+			<Setter Property="Background" Value="#ffffe1"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
     </Application.Styles>
 </Application>
