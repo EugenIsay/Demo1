@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Demo1.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Demo1.Context;
+namespace Demo1.ContextFolder;
 
 public partial class IsajkinContext : DbContext
 {

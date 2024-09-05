@@ -13,14 +13,15 @@ public partial class FirstWindow : Window
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        new MainWindow(false).Show();
+        new MainWindow().Show();
         this.Close();
     }
     private void TextBox_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
     {
         if (ForAdmin.Text == "0000")
         {
-            new MainWindow(true).Show();
+            ServicesActions.IsAdmin = true;
+            new MainWindow().Show();
             this.Close();
         }
     }

@@ -5,18 +5,19 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Demo1.MainWindow"
 		x:CompileBindings="False"
-        Title="Demo1">
+		xmlns:local="clr-namespace:Demo1" 
+		Title="Demo1">
 	<DockPanel Margin="10" LastChildFill="True">
 		<StackPanel DockPanel.Dock="Top" >
-			<TextBox Classes="NTX" Watermark="Поиск"/>
+			<TextBox Name="Search" Classes="NTX" Watermark="Поиск" TextChanged="TextBox_TextChanged"/>
 			<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
 				<TextBlock Name="ShownAmount" HorizontalAlignment="Center" Grid.Column="0"/>
-				<ComboBox SelectedIndex="0" Name="Sort" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="1">
+				<ComboBox Name="Sort" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="1" SelectionChanged="SortChanged">
 					<ComboBoxItem>Без сортировки</ComboBoxItem>
 					<ComboBoxItem>По возрастанию стоимости</ComboBoxItem>
 					<ComboBoxItem>По убыванию стоимости</ComboBoxItem>
 				</ComboBox>
-				<ComboBox SelectedIndex="0" Name="Filtr" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="2">
+				<ComboBox  Name="Filtr" Classes="NCB" HorizontalAlignment="Stretch" Grid.Column="2" SelectionChanged="FiltrChanged">
 					<ComboBoxItem>Без фильтрации</ComboBoxItem>
 					<ComboBoxItem>от 0 до 5%</ComboBoxItem>
 					<ComboBoxItem>от 5% до 15%</ComboBoxItem>
@@ -27,20 +28,31 @@
 			</Grid>
 		</StackPanel>
 		<Button Name="Add" Click="AddButtonClick" DockPanel.Dock="Bottom" Classes="NB" Content="Добавить услугу"/>
-		<ListBox DockPanel.Dock="Bottom" Background="#ffffe1">
+		<ListBox Name="ServiceList" DockPanel.Dock="Bottom" Background="#ffffe1">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid ColumnDefinitions="1*, 2*, 1*">
-						<StackPanel>
-							<TextBlock Name="{Binding Name}"/>
-							<TextBlock/>
-							<TextBlock Name="Discount"/>
-							<StackPanel Orientation="Horizontal">
-								<Button/>
-								<Button/>
+					<Border Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+						<Grid Margin="10"  ColumnDefinitions="2*, 4*, 1*">
+							<Image Grid.Column="0" Width="100" Height="100" Source="{Binding ImageBitmap}"/>
+							<StackPanel Spacing="5" Grid.Column="1">
+								<TextBlock FontSize="20" Text="{Binding Title}"/>
+								<StackPanel Spacing="5" Orientation="Horizontal">
+									<TextBlock  IsVisible="{Binding HasDiscount}" Text="{Binding Cost}" TextDecorations="Strikethrough" />
+									<TextBlock Text="{Binding CostWithDiscount}"/>
+									<TextBlock Text="рублей за"/>
+									<TextBlock Text="{Binding Durationinminutes}"/>
+									<TextBlock Text="минут"/>
+								</StackPanel>
+								<Border Background="{Binding BackgroundColor}" CornerRadius="10">
+									<TextBlock IsVisible="{Binding HasDiscount}" Text="{Binding StringDiscount}"/>
+								</Border>
+								<StackPanel IsVisible="{x:Static local:ServicesActions.IsAdmin}" Spacing="5" Orientation="Horizontal">
+									<Button Content="Редактирование"/>
+									<Button Content="Удалить"/>
+								</StackPanel>
 							</StackPanel>
-						</StackPanel>
-					</Grid>
+						</Grid>
+					</Border>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
