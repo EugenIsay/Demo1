@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Demo1.RedactWindow"
+		Name="RWindow"
         Title="RedactWindow">
 	<Grid ColumnDefinitions="*,*">
 		<DockPanel>
@@ -14,14 +15,14 @@
 			<TextBlock Text="Название"/>
 			<TextBox Classes="NTX" Name="Name" />
 			<TextBlock Text="Стоимость"/>
-			<TextBox Classes="NTX" Name="Cost"/>
+			<TextBox Classes="NTX" Name="Cost" TextChanged="TextBox_TextChanged"/>
 			<TextBlock Text="Длительность в минутах"/>
-			<TextBox Classes="NTX" Name="Time"/>
+			<TextBox Classes="NTX" Name="Time" TextChanged="TextBox_TextChanged"/>
 			<TextBlock Text="Описание"/>
 			<TextBox Classes="NTX" Name="Desc"/>
 			<TextBlock Text="Скидка"/>
-			<TextBox Classes="NTX" Name="Discount"/>
-			<Button Classes="NB" Content="Готово"/>
+			<TextBox Classes="NTX" TextChanged="TextBox_TextChanged_1" Name="Discount"/>
+			<Button Click="Button_Click" Classes="NB" Content="Готово"/>
 		</StackPanel>
 	</Grid>
 </Window>

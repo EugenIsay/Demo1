@@ -6,8 +6,9 @@
         x:Class="Demo1.MainWindow"
 		x:CompileBindings="False"
 		xmlns:local="clr-namespace:Demo1" 
-		Title="Demo1">
+		Title="Подай на 16">
 	<DockPanel Margin="10" LastChildFill="True">
+		<Button Name="Exit" Click="Button_Click_1" DockPanel.Dock="Top" Classes="NB" Content="Выйти"/>
 		<StackPanel DockPanel.Dock="Top" >
 			<TextBox Name="Search" Classes="NTX" Watermark="Поиск" TextChanged="TextBox_TextChanged"/>
 			<Grid HorizontalAlignment="Stretch" ColumnDefinitions="*,*,*">
@@ -31,26 +32,26 @@
 		<ListBox Name="ServiceList" DockPanel.Dock="Bottom" Background="#ffffe1">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Border Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
-						<Grid Margin="10"  ColumnDefinitions="2*, 4*, 1*">
-							<Image Grid.Column="0" Width="100" Height="100" Source="{Binding ImageBitmap}"/>
-							<StackPanel Spacing="5" Grid.Column="1">
-								<TextBlock FontSize="20" Text="{Binding Title}"/>
-								<StackPanel Spacing="5" Orientation="Horizontal">
+					<Border Height="150" Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+						<Grid DoubleTapped="Grid_DoubleTapped" Margin="10"  ColumnDefinitions="2*, 4*, 1*">
+							<Image Margin="-5" Grid.Column="0"  Source="{Binding ImageBitmap}"/>
+							<DockPanel Grid.Column="1">
+								<TextBlock DockPanel.Dock="Top" FontSize="20" Text="{Binding Title}"/>
+								<StackPanel DockPanel.Dock="Top" Spacing="5" Orientation="Horizontal">
 									<TextBlock  IsVisible="{Binding HasDiscount}" Text="{Binding Cost}" TextDecorations="Strikethrough" />
 									<TextBlock Text="{Binding CostWithDiscount}"/>
 									<TextBlock Text="рублей за"/>
 									<TextBlock Text="{Binding Durationinminutes}"/>
 									<TextBlock Text="минут"/>
 								</StackPanel>
-								<Border Background="{Binding BackgroundColor}" CornerRadius="10">
+								<Border DockPanel.Dock="Top" Background="{Binding BackgroundColor}" CornerRadius="10">
 									<TextBlock IsVisible="{Binding HasDiscount}" Text="{Binding StringDiscount}"/>
 								</Border>
-								<StackPanel IsVisible="{x:Static local:ServicesActions.IsAdmin}" Spacing="5" Orientation="Horizontal">
-									<Button Content="Редактирование"/>
-									<Button Content="Удалить"/>
+								<StackPanel DockPanel.Dock="Bottom" IsVisible="{x:Static local:ServicesActions.IsAdmin}" Spacing="5" Orientation="Horizontal">
+									<Button Tag="{Binding Id}" Click="Redact" Content="Редактирование"/>
+									<Button Tag="{Binding Id}" Content="Удалить"/>
 								</StackPanel>
-							</StackPanel>
+							</DockPanel>
 						</Grid>
 					</Border>
 				</DataTemplate>

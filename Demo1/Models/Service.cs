@@ -1,7 +1,12 @@
 ﻿using Avalonia.Platform;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 
 namespace Demo1.Models;
 
@@ -23,7 +28,9 @@ public partial class Service
 
     public Bitmap ImageBitmap
     {
-        get => new Bitmap(AssetLoader.Open(new Uri($"avares://Demo1/Assets/{Mainimagepath}")));
+        get {
+            return new Bitmap(AssetLoader.Open(new Uri($"avares://Demo1/Assets/{Mainimagepath}"))); 
+        }
     }
 
     public bool HasDiscount { get => Discount != 0; }

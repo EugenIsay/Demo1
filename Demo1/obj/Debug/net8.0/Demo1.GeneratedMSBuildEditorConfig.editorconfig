@@ -20,6 +20,9 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/prdb/Desktop/IsayProj/Demo1/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/prdb/Desktop/IsayProj/Demo1/ClientServiceWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/prdb/Desktop/IsayProj/Demo1/FirstWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

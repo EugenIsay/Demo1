@@ -21,10 +21,10 @@ namespace Demo1
             switch (sort)
             {
                 case 1:
-                    ListServices = ListServices.OrderByDescending(p => p.Cost).ToList();
+                    ListServices = ListServices.OrderByDescending(p => p.CostWithDiscount).ToList();
                     break;
                 case 2:
-                    ListServices = ListServices.OrderBy(p => p.Cost).ToList();
+                    ListServices = ListServices.OrderBy(p => p.CostWithDiscount).ToList();
                     break;
             }
             switch (filtr)
