@@ -15,6 +15,10 @@ namespace Demo1
         public static IsajkinContext DBContext { get; set; } = new IsajkinContext();
         public static List<Service> ListServices = DBContext.Services.ToList();
         public static string ShowmAmount = $"{ListServices.Count}/{DBContext.Services.ToList().Count()}";
+        public static void Fill()
+        {
+            ListServices = DBContext.Services.ToList();
+        }
         public static void SomethingChanged(string str, int sort, int filtr)
         {
             ListServices = DBContext.Services.ToList();

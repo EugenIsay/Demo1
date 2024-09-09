@@ -9,7 +9,7 @@
 	<Grid ColumnDefinitions="*,*">
 		<DockPanel>
 			<Image DockPanel.Dock="Top" Name="Image"/>
-			<Button DockPanel.Dock="Top" Classes="NB" Content="Добавить картинку"/>
+			<Button DockPanel.Dock="Top" Classes="NB" Content="Добавить картинку" Click="AddImage"/>
 		</DockPanel>
 		<StackPanel Grid.Column="1">
 			<TextBlock Text="Название"/>
@@ -17,10 +17,10 @@
 			<TextBlock Text="Стоимость"/>
 			<TextBox Classes="NTX" Name="Cost" TextChanged="TextBox_TextChanged"/>
 			<TextBlock Text="Длительность в минутах"/>
-			<TextBox Classes="NTX" Name="Time" TextChanged="TextBox_TextChanged"/>
+			<TextBox Classes="NTX" Name="Time" TextChanged="TextBox_TextChanged_2"/>
 			<TextBlock Text="Описание"/>
 			<TextBox Classes="NTX" Name="Desc"/>
-			<TextBlock Text="Скидка"/>
+			<TextBlock Text="Скидка в процентах"/>
 			<TextBox Classes="NTX" TextChanged="TextBox_TextChanged_1" Name="Discount"/>
 			<Button Click="Button_Click" Classes="NB" Content="Готово"/>
 		</StackPanel>

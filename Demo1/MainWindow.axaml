@@ -32,8 +32,8 @@
 		<ListBox Name="ServiceList" DockPanel.Dock="Bottom" Background="#ffffe1">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Border Height="150" Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
-						<Grid DoubleTapped="Grid_DoubleTapped" Margin="10"  ColumnDefinitions="2*, 4*, 1*">
+					<Border Tag="{Binding Id}" DoubleTapped="Grid_DoubleTapped" Height="150" Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
+						<Grid  Margin="10"  ColumnDefinitions="2*, 4*, 1*">
 							<Image Margin="-5" Grid.Column="0"  Source="{Binding ImageBitmap}"/>
 							<DockPanel Grid.Column="1">
 								<TextBlock DockPanel.Dock="Top" FontSize="20" Text="{Binding Title}"/>
@@ -49,7 +49,7 @@
 								</Border>
 								<StackPanel DockPanel.Dock="Bottom" IsVisible="{x:Static local:ServicesActions.IsAdmin}" Spacing="5" Orientation="Horizontal">
 									<Button Tag="{Binding Id}" Click="Redact" Content="Редактирование"/>
-									<Button Tag="{Binding Id}" Content="Удалить"/>
+									<Button Tag="{Binding Id}" Click="Delete" Content="Удалить"/>
 								</StackPanel>
 							</DockPanel>
 						</Grid>

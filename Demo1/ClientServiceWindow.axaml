@@ -5,10 +5,16 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Demo1.ClientServiceWindow"
         Title="ClientServiceWindow">
-	<DockPanel>
-		<Image/>
-		<TextBlock DockPanel.Dock="Top"/>
-		<TextBlock DockPanel.Dock="Top"/>
-		<TextBlock DockPanel.Dock="Top"/>
-	</DockPanel>
+	<Grid ColumnDefinitions="*, 3*">
+		<Image Name="Image" VerticalAlignment="Center"/>
+		<DockPanel LastChildFill="False" Grid.Column="1">
+			<TextBlock Name="Title" DockPanel.Dock="Top"/>
+			<TextBlock Name="Time" DockPanel.Dock="Top"/>
+			<ComboBox SelectionChanged="ComboBox_SelectionChanged_1" DockPanel.Dock="Top" Name="People"/>
+			<Calendar SelectedDatesChanged="Calendar_SelectedDatesChanged" VerticalAlignment="Top" DockPanel.Dock="Right"/>
+			<TimePicker SelectedTimeChanged="TimePicker_SelectedTimeChanged" DockPanel.Dock="Top"/>
+			<TextBlock Name="Info" DockPanel.Dock="Top"/>
+			<Button Content="Готово"/>
+		</DockPanel>
+	</Grid>
 </Window>

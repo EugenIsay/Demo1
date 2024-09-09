@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 
 namespace Demo1.Models;
@@ -24,6 +25,11 @@ public partial class Client
     public int Gendercode { get; set; }
 
     public string? Photopath { get; set; }
+
+    public string FullName
+    {
+        get => Firstname + " " + Lastname + " " + Patronymic;
+    }
 
     public virtual ICollection<Clientservice> Clientservices { get; set; } = new List<Clientservice>();
 

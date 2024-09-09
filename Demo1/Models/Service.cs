@@ -29,7 +29,8 @@ public partial class Service
     public Bitmap ImageBitmap
     {
         get {
-            return new Bitmap(AssetLoader.Open(new Uri($"avares://Demo1/Assets/{Mainimagepath}"))); 
+            var a = new Uri($"avares://Demo1/Assets/{Mainimagepath}");
+            return new Bitmap(Environment.CurrentDirectory + "/Assets/" + Mainimagepath); 
         }
     }
 
