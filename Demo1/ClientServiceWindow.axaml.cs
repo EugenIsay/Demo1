@@ -49,7 +49,7 @@ public partial class ClientServiceWindow : Window
 
     private void Calendar_SelectedDatesChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
     {
-        Date = (sender as Calendar).SelectedDate.ToString();
+        Date = DateOnly.FromDateTime((sender as Calendar).SelectedDate.Value.Date).ToString();
         Info.Text = $"{Name} назначен(-на) на {Date} в {Hours}, услуга продлится до {Hours2}";
     }
 
@@ -57,5 +57,18 @@ public partial class ClientServiceWindow : Window
     {
         Name = Names[(sender as ComboBox).SelectedIndex];
         Info.Text = $"{Name} назначен(-на) на {Date} в {Hours}, услуга продлится до {Hours2}";
+    }
+
+    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        int ClientInd = ServicesActions.DBContext.Clients.ToList().Select(c => c.FullName).ToList().IndexOf(Name);
+        if (DateTime.TryParse(Date + " " + Hours, out DateTime date) && ClientInd != -1)
+        {
+            Clientservice cs = new Clientservice() { Clientid = ClientInd, Serviceid = service.Id, Starttime = date };
+            ServicesActions.DBContext.Clientservices.Add(cs);
+            ServicesActions.DBContext.SaveChanges();
+            new MainWindow().Show();
+            Close();
+        }
     }
 }

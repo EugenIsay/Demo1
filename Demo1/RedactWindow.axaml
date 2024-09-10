@@ -4,13 +4,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Demo1.RedactWindow"
+		x:CompileBindings="False"
 		Name="RWindow"
         Title="RedactWindow">
 	<Grid ColumnDefinitions="*,*">
-		<DockPanel>
-			<Image DockPanel.Dock="Top" Name="Image"/>
-			<Button DockPanel.Dock="Top" Classes="NB" Content="Добавить картинку" Click="AddImage"/>
-		</DockPanel>
+		<StackPanel Grid.Column="0">
+			<Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2" Height="140" Margin="10,10,10,0" >
+				<Image Name="Image" Stretch="UniformToFill" />
+			</Border>
+			<Button Margin="0,10" DockPanel.Dock="Bottom" Classes="NB" Content="Добавить картинку" Click="AddImage"/>
+			<ListBox Name="Extra" Width="500" MaxWidth="500" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<VirtualizingStackPanel Orientation="Horizontal" />
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2" Height="280" Margin="10,10,10,0" >
+								<Image Source="{Binding ImageBitmap}" Name="Image" Stretch="UniformToFill" />
+							</Border>
+							<StackPanel  Orientation="Horizontal">
+								<Button/>
+								<Button/>
+							</StackPanel>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</StackPanel>
 		<StackPanel Grid.Column="1">
 			<TextBlock Text="Название"/>
 			<TextBox Classes="NTX" Name="Name" />
@@ -22,7 +45,10 @@
 			<TextBox Classes="NTX" Name="Desc"/>
 			<TextBlock Text="Скидка в процентах"/>
 			<TextBox Classes="NTX" TextChanged="TextBox_TextChanged_1" Name="Discount"/>
-			<Button Click="Button_Click" Classes="NB" Content="Готово"/>
+			<StackPanel Orientation="Horizontal">
+				<Button Click="Button_Click" Classes="NB" Content="Готово"/>
+				<Button Click="Button_Click_1" Classes="NB" Content="Выйти"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </Window>

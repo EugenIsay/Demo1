@@ -28,13 +28,16 @@
 				</ComboBox>
 			</Grid>
 		</StackPanel>
-		<Button Name="Add" Click="AddButtonClick" DockPanel.Dock="Bottom" Classes="NB" Content="Добавить услугу"/>
+		<StackPanel IsVisible="{x:Static local:ServicesActions.IsAdmin}" Orientation="Horizontal" DockPanel.Dock="Bottom" >
+			<Button Name="Add" Click="AddButtonClick"  Classes="NB" Content="Добавить услугу"/>
+			<Button Name="Ent" Click="Button_Click_2"  Classes="NB" Content="Ближайшие записи"/>
+		</StackPanel>
 		<ListBox Name="ServiceList" DockPanel.Dock="Bottom" Background="#ffffe1">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border Tag="{Binding Id}" DoubleTapped="Grid_DoubleTapped" Height="150" Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="10">
 						<Grid  Margin="10"  ColumnDefinitions="2*, 4*, 1*">
-							<Image Margin="-5" Grid.Column="0"  Source="{Binding ImageBitmap}"/>
+							<Image Margin="0,0,10,0" Stretch="UniformToFill" Grid.Column="0"  Source="{Binding ImageBitmap}"/>
 							<DockPanel Grid.Column="1">
 								<TextBlock DockPanel.Dock="Top" FontSize="20" Text="{Binding Title}"/>
 								<StackPanel DockPanel.Dock="Top" Spacing="5" Orientation="Horizontal">

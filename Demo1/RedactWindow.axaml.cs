@@ -33,22 +33,24 @@ public partial class RedactWindow : Window
         RWindow.Title = "Редактирование услуги";
         Service service = new Service();
         service = ServicesActions.DBContext.Services.ToList().FirstOrDefault(s => s.Id == Ind);
+        service.Servicephotos = ServicesActions.DBContext.Servicephotos.ToList().Where(p => p.Serviceid == service.Id).ToList();
         Name.Text = service.Title;
         Cost.Text = service.Cost.ToString();
         Time.Text = service.Durationinminutes.ToString();
         Desc.Text = service.Description;
-        Discount.Text = (service.Discount*100).ToString();
+        Discount.Text = (service.Discount * 100).ToString();
         FileName = service.Mainimagepath;
         FilePath = Environment.CurrentDirectory + "\\Assets\\" + FileName;
         Image.Source = new Bitmap(FilePath);
         redact = true;
+        Extra.ItemsSource = service.Servicephotos.ToList();
         Index = Ind;
     }
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         if (!String.IsNullOrEmpty(Name.Text) && !String.IsNullOrEmpty(Cost.Text) && !String.IsNullOrEmpty(Time.Text) && !String.IsNullOrEmpty(FileName))
         {
-            if (Discount.Text == null)
+            if (String.IsNullOrEmpty(Discount.Text))
             {
                 Discount.Text = "0";
             }
@@ -59,7 +61,7 @@ public partial class RedactWindow : Window
                 service.Cost = float.Parse(Cost.Text);
                 service.Durationinminutes = Int32.Parse(Time.Text);
                 service.Description = Desc.Text;
-                service.Discount = Int32.Parse(Discount.Text) / 100;
+                service.Discount = Double.Parse(Discount.Text) / 100;
                 service.Mainimagepath = FileName;
                 ServicesActions.DBContext.Services.Update(service);
                 ServicesActions.DBContext.SaveChanges();
@@ -76,7 +78,7 @@ public partial class RedactWindow : Window
                 {
                     return;
                 }
-                Service service = new Service() { Title = Name.Text, Cost = float.Parse(Cost.Text), Durationinminutes = Int32.Parse(Time.Text), Description = Desc.Text, Discount = (Int32.Parse(Discount.Text)) / 100, Mainimagepath = FileName};
+                Service service = new Service() { Title = Name.Text, Cost = float.Parse(Cost.Text), Durationinminutes = Int32.Parse(Time.Text), Description = Desc.Text, Discount = (Double.Parse(Discount.Text)) / 100, Mainimagepath = FileName };
                 ServicesActions.DBContext.Services.Add(service);
                 File.Copy(FileToCopy, $"{Environment.CurrentDirectory}/Assets/{FileName}");
                 ServicesActions.DBContext.SaveChanges();
@@ -89,10 +91,10 @@ public partial class RedactWindow : Window
 
     private async void TextBox_TextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
     {
-        if (!float.TryParse((sender as TextBox).Text, out float result) && (sender as TextBox).Text.Length!=0)
+        if (!float.TryParse((sender as TextBox).Text, out float result) && (sender as TextBox).Text.Length != 0)
         {
             (sender as TextBox).Foreground = Brushes.Red;
-            (sender as TextBox).Text = (sender as TextBox).Text.Remove((sender as TextBox).Text.Length-1);
+            (sender as TextBox).Text = (sender as TextBox).Text.Remove((sender as TextBox).Text.Length - 1);
             await Task.Delay(500);
             (sender as TextBox).Foreground = Brushes.Black;
         }
@@ -120,11 +122,8 @@ public partial class RedactWindow : Window
             DirectoryInfo folderInfo = new DirectoryInfo(folderPath);
             int pos = FileToCopy.LastIndexOf('.');
             string str = FileToCopy.Substring(pos, FileToCopy.Length - pos);
-            if (folderInfo.GetFiles().Where(f => f.FullName == str).Count() == 0)
-            {
-                Image.Source = new Bitmap(FileToCopy);
-                FileName = System.Guid.NewGuid().ToString() + str;
-            }
+            Image.Source = new Bitmap(FileToCopy);
+            FileName = System.Guid.NewGuid().ToString() + str;
         }
     }
 
@@ -137,5 +136,11 @@ public partial class RedactWindow : Window
             await Task.Delay(500);
             (sender as TextBox).Foreground = Brushes.Black;
         }
+    }
+
+    private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        new MainWindow().Show();
+        Close();
     }
 }

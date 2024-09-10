@@ -23,6 +23,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Class_Student/Desktop/IsayProj/Demo1/Demo1/ClientServiceWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Class_Student/Desktop/IsayProj/Demo1/Demo1/Entries.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Class_Student/Desktop/IsayProj/Demo1/Demo1/FirstWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

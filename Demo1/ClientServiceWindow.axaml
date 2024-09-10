@@ -7,14 +7,14 @@
         Title="ClientServiceWindow">
 	<Grid ColumnDefinitions="*, 3*">
 		<Image Name="Image" VerticalAlignment="Center"/>
-		<DockPanel LastChildFill="False" Grid.Column="1">
+		<DockPanel VerticalAlignment="Center" LastChildFill="False" Grid.Column="1">
 			<TextBlock Name="Title" DockPanel.Dock="Top"/>
 			<TextBlock Name="Time" DockPanel.Dock="Top"/>
 			<ComboBox SelectionChanged="ComboBox_SelectionChanged_1" DockPanel.Dock="Top" Name="People"/>
-			<Calendar SelectedDatesChanged="Calendar_SelectedDatesChanged" VerticalAlignment="Top" DockPanel.Dock="Right"/>
+			<Calendar IsTodayHighlighted="False" VerticalAlignment="Center" SelectedDatesChanged="Calendar_SelectedDatesChanged" DockPanel.Dock="Right"/>
 			<TimePicker SelectedTimeChanged="TimePicker_SelectedTimeChanged" DockPanel.Dock="Top"/>
 			<TextBlock Name="Info" DockPanel.Dock="Top"/>
-			<Button Content="Готово"/>
+			<Button Click="Button_Click" Classes="NB" Content="Готово"/>
 		</DockPanel>
 	</Grid>
 </Window>

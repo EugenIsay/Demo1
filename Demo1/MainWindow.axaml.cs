@@ -71,8 +71,11 @@ namespace Demo1
 
         private void Grid_DoubleTapped(object? sender, Avalonia.Input.TappedEventArgs e)
         {
-            new ClientServiceWindow((sender as Border).Tag.ToString()).Show();
-            Close();
+            if (ServicesActions.IsAdmin)
+            {
+                new ClientServiceWindow((sender as Border).Tag.ToString()).Show();
+                Close();
+            }
         }
 
         private void Delete(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -84,6 +87,12 @@ namespace Demo1
             ServicesActions.DBContext.Services.Remove(service);
             ServicesActions.DBContext.SaveChanges();
             Restart();
+        }
+
+        private void Button_Click_2(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            new Entries().Show();
+            Close();
         }
     }
 }
