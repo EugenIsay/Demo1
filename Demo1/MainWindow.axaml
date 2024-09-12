@@ -51,8 +51,8 @@
 									<TextBlock IsVisible="{Binding HasDiscount}" Text="{Binding StringDiscount}"/>
 								</Border>
 								<StackPanel DockPanel.Dock="Bottom" IsVisible="{x:Static local:ServicesActions.IsAdmin}" Spacing="5" Orientation="Horizontal">
-									<Button Tag="{Binding Id}" Click="Redact" Content="Редактирование"/>
-									<Button Tag="{Binding Id}" Click="Delete" Content="Удалить"/>
+									<Button Classes="NB" Tag="{Binding Id}" Click="Redact" Content="Редактирование"/>
+									<Button Classes="NB" Tag="{Binding Id}" Click="Delete" Content="Удалить"/>
 								</StackPanel>
 							</DockPanel>
 						</Grid>

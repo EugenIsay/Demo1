@@ -7,48 +7,55 @@
 		x:CompileBindings="False"
 		Name="RWindow"
         Title="RedactWindow">
-	<Grid ColumnDefinitions="*,*">
-		<StackPanel Grid.Column="0">
-			<Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2" Height="140" Margin="10,10,10,0" >
-				<Image Name="Image" Stretch="UniformToFill" />
-			</Border>
-			<Button Margin="0,10" DockPanel.Dock="Bottom" Classes="NB" Content="Добавить картинку" Click="AddImage"/>
-			<ListBox Name="Extra" Width="500" MaxWidth="500" ScrollViewer.HorizontalScrollBarVisibility="Visible">
-				<ListBox.ItemsPanel>
-					<ItemsPanelTemplate>
-						<VirtualizingStackPanel Orientation="Horizontal" />
-					</ItemsPanelTemplate>
-				</ListBox.ItemsPanel>
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<StackPanel>
-							<Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2" Height="280" Margin="10,10,10,0" >
-								<Image Source="{Binding ImageBitmap}" Name="Image" Stretch="UniformToFill" />
-							</Border>
-							<StackPanel  Orientation="Horizontal">
-								<Button/>
-								<Button/>
-							</StackPanel>
-						</StackPanel>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
-		</StackPanel>
-		<StackPanel Grid.Column="1">
-			<TextBlock Text="Название"/>
-			<TextBox Classes="NTX" Name="Name" />
-			<TextBlock Text="Стоимость"/>
-			<TextBox Classes="NTX" Name="Cost" TextChanged="TextBox_TextChanged"/>
-			<TextBlock Text="Длительность в минутах"/>
-			<TextBox Classes="NTX" Name="Time" TextChanged="TextBox_TextChanged_2"/>
-			<TextBlock Text="Описание"/>
-			<TextBox Classes="NTX" Name="Desc"/>
-			<TextBlock Text="Скидка в процентах"/>
-			<TextBox Classes="NTX" TextChanged="TextBox_TextChanged_1" Name="Discount"/>
-			<StackPanel Orientation="Horizontal">
-				<Button Click="Button_Click" Classes="NB" Content="Готово"/>
-				<Button Click="Button_Click_1" Classes="NB" Content="Выйти"/>
+	<DockPanel>
+		<Grid DockPanel.Dock="Top" ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="1">
+				<TextBlock Text="Название"/>
+				<TextBox Classes="NTX" Name="Name" />
+				<TextBlock Text="Стоимость"/>
+				<TextBox Classes="NTX" Name="Cost" TextChanged="TextBox_TextChanged"/>
+				<TextBlock Text="Длительность в минутах"/>
+				<TextBox Classes="NTX" Name="Time" TextChanged="TextBox_TextChanged_2"/>
+				<TextBlock Text="Описание"/>
+				<TextBox Classes="NTX" Name="Desc"/>
+				<TextBlock Text="Скидка в процентах"/>
+				<TextBox Classes="NTX" TextChanged="TextBox_TextChanged_1" Name="Discount"/>
+				<StackPanel Orientation="Horizontal">
+					<Button Click="Button_Click" Classes="NB" Content="Готово"/>
+					<Button Click="Button_Click_1" Classes="NB" Content="Выйти"/>
+				</StackPanel>
 			</StackPanel>
-		</StackPanel>
-	</Grid>
+			<StackPanel VerticalAlignment="Stretch" Grid.Column="0">
+				<Border Height="200" DockPanel.Dock="Top" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"  Margin="10,10,10,0" >
+					<Image Name="Image" Stretch="Fill" />
+				</Border>
+				<Button Margin="0,10" DockPanel.Dock="Bottom" Classes="NB" Content="Основная картинка" Click="AddImage"/>
+
+			</StackPanel>
+
+		</Grid>
+		<Button Margin="0,10" DockPanel.Dock="Top" Classes="NB" Content="Добавить доп.картинку" Click="Button_Click_2"/>
+		<ListBox DockPanel.Dock="Top" Name="Extra"   ScrollViewer.HorizontalScrollBarVisibility="Visible">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<Border DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="2" Height="280" Margin="10,10,10,0" >
+							<Image Source="{Binding ImageBitmap}" Name="Image" Stretch="UniformToFill" />
+						</Border>
+						<StackPanel  Orientation="Horizontal">
+							<Button/>
+							<Button/>
+						</StackPanel>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
+
+
 </Window>

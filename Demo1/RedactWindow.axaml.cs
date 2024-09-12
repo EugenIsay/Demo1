@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Controls;
+using System.Collections.Generic;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using System;
@@ -22,6 +23,7 @@ public partial class RedactWindow : Window
     string FilePath = "";
     string FileName = "";
     string FileToCopy = "";
+    public List<string> Files = new List<string>();
     public RedactWindow()
     {
         InitializeComponent();
@@ -44,6 +46,7 @@ public partial class RedactWindow : Window
         Image.Source = new Bitmap(FilePath);
         redact = true;
         Extra.ItemsSource = service.Servicephotos.ToList();
+        Files = service.Servicephotos.Select(p => p.Photopath).ToList();
         Index = Ind;
     }
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -142,5 +145,10 @@ public partial class RedactWindow : Window
     {
         new MainWindow().Show();
         Close();
+    }
+
+    private void Button_Click_2(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+
     }
 }
